@@ -5,7 +5,6 @@ const okButton = document.getElementById("okButton");
 const loadingMessage = document.getElementById("loadingMessage");
 const infiniteMessages = document.getElementById("infiniteMessages");
 
-// Updated list of fake progress messages (no end hint)
 const messages = [
   "Downloading files...",
   "Optimizing for system...",
@@ -44,18 +43,15 @@ button.addEventListener("mouseenter", () => {
 });
 
 button.addEventListener("click", () => {
-  // Display success message and OK button
   loadingMessage.textContent = "Successfully clicked button!";
   loadingScreen.style.display = "flex";
   infiniteMessages.classList.add("hidden");
 });
 
 okButton.addEventListener("click", () => {
-  // Show infinite loading screen with fake progress messages
-  okButton.style.display = "none"; // Hide the OK button
-  loadingMessage.textContent = ""; // Hide the success message
+  okButton.style.display = "none";
+  loadingMessage.textContent = "";
 
-  // Display fake loading messages with random intervals
   infiniteMessages.classList.remove("hidden");
   let messageIndex = 0;
 
@@ -63,12 +59,10 @@ okButton.addEventListener("click", () => {
     infiniteMessages.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
 
-    // Set a random delay between 2 and 15 seconds (2000ms to 15000ms)
     const randomDelay = Math.floor(Math.random() * (15000 - 2000 + 1)) + 2000;
 
     setTimeout(showNextMessage, randomDelay);
   };
 
-  // Start showing messages
   showNextMessage();
 });
